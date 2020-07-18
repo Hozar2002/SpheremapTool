@@ -37,7 +37,7 @@ struct Image {
 	{}
 
 	Image(const std::string& filename) :
-		data(stbi_load(filename.c_str(), &width, &height, nullptr, 4), stbi_image_free)
+		data(stbi_tga_load(filename.c_str(), &width, &height, nullptr, 4), stbi_image_free)
 	{
 		if (data == nullptr)
 			std::cerr << "Failed to open " << filename << ".\n";
