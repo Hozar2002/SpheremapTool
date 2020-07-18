@@ -12,10 +12,7 @@ configuration:
 - Debug
 - Release
 
-platform:
-- x86
-
 build:
     project: SpheremapTool.sln
-    parallel: true
+    parallel: false
     verbosity: minimal
