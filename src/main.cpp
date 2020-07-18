@@ -324,8 +324,8 @@ int main(int argc, char* argv[]) {
 					float vx, vy, vz;
 
 					float m_pi = acos(-1.f);
-					float scx = (float)x / (float)output_size - 1;
-					float scy = 1 - (float)y / (float)output_size;
+					float scx = (float)x / (float)output_size * 2 - 1;
+					float scy = 1 - (float)y / (float)output_size * 2;
 					float theta = scx * m_pi;
 					float phi = scy * m_pi / 2.f;
 					vx = cos(phi) * cos(theta);
@@ -348,7 +348,7 @@ int main(int argc, char* argv[]) {
 				sample_g /= num_aa_samples;
 				sample_b /= num_aa_samples;
 
-				out_data[y * output_size + x * 2] = makeColor(sample_r, sample_g, sample_b);
+				out_data[y * output_size + x] = makeColor(sample_r, sample_g, sample_b);
 			}
 		}
 	}
