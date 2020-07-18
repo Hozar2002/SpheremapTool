@@ -303,13 +303,13 @@ int main(int argc, char* argv[]) {
 	if (output_fname.empty())
 		output_fname = fname_prefix + ".tga";
 
-	std::vector<u32> out_data(output_size * output_size);
 	float output_pixel_size = 1.f / output_size;
+	int output_size_x = output_size * 2;
+	float output_pixel_size_x = 1.f / output_size_x;
+	std::vector<u32> out_data(output_size_x * output_size);
 
 	{
 		Cubemap input_cubemap(fname_prefix, fname_extension);
-		int output_size_x = output_size * 2;
-		float output_pixel_size_x = 1.f / output_size_x;
 		for (int y = 0; y < output_size; ++y) {
 			for (int x = 0; x < output_size_x; ++x) {
 				float center_s = unlerp(x, output_size_x);
@@ -336,7 +336,7 @@ int main(int argc, char* argv[]) {
 
 						vz = std::sqrtf(std::max(0.f, 1.f - vx*vx - vy*vy));
 					} else {
-							float m_pi = 3.141f;//acos(-1.f);
+							float m_pi = acos(-1.f);
 							float scx = (float)x / (float)output_size * 2 - 1;
 							float scy = 1 - (float)y / (float)output_size * 2;
 							float theta = scx * m_pi;
