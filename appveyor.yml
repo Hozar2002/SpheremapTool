@@ -17,7 +17,7 @@ build:
     parallel: false
     verbosity: minimal
 artifacts:
-    - path: res/SpheremapTool.*.7z
-      name: SpheremapTool.*.7z
-    - path: res/SpheremapToolSymbols.*.7z
-      name: SpheremapToolSymbols.*.7z
+    - path: SpheremapTool.7z
+      name: SpheremapTool.7z
+    - path: SpheremapToolSymbols.7z
+      name: SpheremapToolSymbols.7z
