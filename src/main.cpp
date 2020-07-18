@@ -8,7 +8,7 @@
 #include <string>
 #include <vector>
 
-#include "stb_image.hpp"
+#include "stb_image.cpp"
 #include "stb_image_write.hpp"
 
 typedef uint8_t u8;
