@@ -346,7 +346,7 @@ int main(int argc, char* argv[]) {
 							//vx = rev_p_sqrt * (2.0f * s - 1.0f);
 							//vy = rev_p_sqrt * -(2.0f * t - 1.0f);
 							//vz = 8.0f * (s - s*s + t - t*t) - 3.0f;
-							float m_pi = radians(180);
+							float m_pi = std::numbers::pi;
 							float scx = (float)x / (float)output_size * 2 - 1;
 							float scy = 1 - (float)y / (float)output_size * 2;
 							float theta = scx * m_pi;
