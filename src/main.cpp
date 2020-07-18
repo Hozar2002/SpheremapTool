@@ -301,23 +301,24 @@ int main(int argc, char* argv[]) {
 	std::string fname_prefix = positional_params[0];
 	std::string fname_extension = positional_params[1];
 	if (output_fname.empty())
-		output_fname = fname_prefix + "_spheremap.bmp";
+		output_fname = fname_prefix + ".tga";
 
 	std::vector<u32> out_data(output_size * output_size);
 	float output_pixel_size = 1.f / output_size;
 
 	{
 		Cubemap input_cubemap(fname_prefix, fname_extension);
-
+		int output_size_x = output_size * 2;
+		float output_pixel_size_x = 1.f / output_size_x;
 		for (int y = 0; y < output_size; ++y) {
-			for (int x = 0; x < output_size; ++x) {
-				float center_s = unlerp(x, output_size);
+			for (int x = 0; x < output_size_x; ++x) {
+				float center_s = unlerp(x, output_size_x);
 				float center_t = unlerp(y, output_size);
 
 				u32 sample_r = 0, sample_g = 0, sample_b = 0;
 
 				for (int sample = 0; sample < num_aa_samples; ++sample) {
-					float s = center_s + aa_sample_pattern[sample*2 + 0] * output_pixel_size;
+					float s = center_s + aa_sample_pattern[sample*2 + 0] * output_pixel_size_x;
 					float t = center_t + aa_sample_pattern[sample*2 + 1] * output_pixel_size;
 
 					float vx, vy, vz;
@@ -345,7 +346,7 @@ int main(int argc, char* argv[]) {
 							//vx = rev_p_sqrt * (2.0f * s - 1.0f);
 							//vy = rev_p_sqrt * -(2.0f * t - 1.0f);
 							//vz = 8.0f * (s - s*s + t - t*t) - 3.0f;
-							float m_pi = 3.141592653589793238462643383279f;
+							float m_pi = radians(180);
 							float scx = (float)x / (float)output_size * 2 - 1;
 							float scy = 1 - (float)y / (float)output_size * 2;
 							float theta = scx * m_pi;
