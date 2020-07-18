@@ -369,5 +369,5 @@ int main(int argc, char* argv[]) {
 		}
 	}
 
-	stbi_write_bmp(output_fname.c_str(), output_size, output_size, 4, out_data.data());
+	stbi_write_tga(output_fname.c_str(), output_size, output_size, 4, out_data.data());
 }
