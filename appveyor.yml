@@ -16,6 +16,7 @@ build:
     project: SpheremapTool.sln
     parallel: false
     verbosity: minimal
-  artifacts:
-    - path: SpheremapTool.exe
-      name: SpheremapTool.exe
+    
+artifacts:
+   path: SpheremapTool.exe
+   name: SpheremapTool.exe
