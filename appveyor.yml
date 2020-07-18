@@ -16,3 +16,8 @@ build:
     project: SpheremapTool.sln
     parallel: false
     verbosity: minimal
+artifacts:
+    - path: res/SpheremapTool.*.7z
+      name: SpheremapTool.*.7z
+    - path: res/SpheremapToolSymbols.*.7z
+      name: SpheremapToolSymbols.*.7z
