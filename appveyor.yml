@@ -18,7 +18,7 @@ build:
     verbosity: minimal
     
 artifacts:
-   path: C:\projects\spheremaptool\Debug\SpheremapTool.exe
+   path: Debug\SpheremapTool.exe
    name: SpheremapToolDebug.exe
-   path: C:\projects\spheremaptool\Release\SpheremapTool.exe
+   path: Release\SpheremapTool.exe
    name: SpheremapToolRelease.exe
