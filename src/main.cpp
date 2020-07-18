@@ -346,8 +346,8 @@ int main(int argc, char* argv[]) {
 							//vy = rev_p_sqrt * -(2.0f * t - 1.0f);
 							//vz = 8.0f * (s - s*s + t - t*t) - 3.0f;
 							float m_pi = 3.141592653589793238462643383279f;
-							float scx = x / output_size * 2 - 1;
-							float scy = 1 - y / output_size * 2;
+							float scx = (float)x / (float)output_size * 2 - 1;
+							float scy = 1 - (float)y / (float)output_size * 2;
 							float theta = scx * m_pi;
 							float phi = scy * m_pi / 2.f;
 							vx = cos(phi) * cos(theta);
