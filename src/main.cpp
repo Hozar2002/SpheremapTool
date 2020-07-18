@@ -8,7 +8,7 @@
 #include <string>
 #include <vector>
 
-#include "stb_image.cpp"
+#include "stb_image.hpp"
 #include "stb_image_write.hpp"
 
 typedef uint8_t u8;
@@ -37,7 +37,7 @@ struct Image {
 	{}
 
 	Image(const std::string& filename) :
-		data(stbi_load_main(filename.c_str(), &width, &height, nullptr, 4), stbi_image_free)
+		data(stbi_load(filename.c_str(), &width, &height, nullptr, 4), stbi_image_free)
 	{
 		if (data == nullptr)
 			std::cerr << "Failed to open " << filename << ".\n";
@@ -95,12 +95,12 @@ struct Cubemap {
 	Image faces[NUM_FACES];
 
 	Cubemap(const std::string& fname_prefix, const std::string& fname_extension) {
-		faces[FACE_POS_X] = Image(fname_prefix + "_right."  + fname_extension);
-		faces[FACE_NEG_X] = Image(fname_prefix + "_left."   + fname_extension);
-		faces[FACE_POS_Y] = Image(fname_prefix + "_top."    + fname_extension);
-		faces[FACE_NEG_Y] = Image(fname_prefix + "_bottom." + fname_extension);
-		faces[FACE_POS_Z] = Image(fname_prefix + "_front."  + fname_extension);
-		faces[FACE_NEG_Z] = Image(fname_prefix + "_back."   + fname_extension);
+		faces[FACE_POS_X] = Image("1." + fname_extension);
+		faces[FACE_NEG_X] = Image("2." + fname_extension);
+		faces[FACE_POS_Y] = Image("3." + fname_extension);
+		faces[FACE_NEG_Y] = Image("4." + fname_extension);
+		faces[FACE_POS_Z] = Image("5." + fname_extension);
+		faces[FACE_NEG_Z] = Image("6." + fname_extension);
 	}
 
 	u32 readTexel(CubeFace face, int x, int y) {
