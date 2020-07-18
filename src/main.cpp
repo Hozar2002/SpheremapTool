@@ -336,16 +336,23 @@ int main(int argc, char* argv[]) {
 						vz = std::sqrtf(std::max(0.f, 1.f - vx*vx - vy*vy));
 					} else {
 						float rev_p = 16.0f * (s - s*s + t - t*t) - 4.0f;
-						if (rev_p < 0.0f) {
-							vx = 0.0f;
-							vy = 0.0f;
-							vz = -1.0f;
-						} else {
-							float rev_p_sqrt = std::sqrtf(rev_p);
-							vx = rev_p_sqrt * (2.0f * s - 1.0f);
-							vy = rev_p_sqrt * -(2.0f * t - 1.0f);
-							vz = 8.0f * (s - s*s + t - t*t) - 3.0f;
-						}
+					//	if (rev_p < 0.0f) {
+					//		vx = 0.0f;
+					//		vy = 0.0f;
+					//		vz = -1.0f;
+					//	} else {
+							//float rev_p_sqrt = std::sqrtf(rev_p);
+							//vx = rev_p_sqrt * (2.0f * s - 1.0f);
+							//vy = rev_p_sqrt * -(2.0f * t - 1.0f);
+							//vz = 8.0f * (s - s*s + t - t*t) - 3.0f;
+							float scx = x / output_size * 2 - 1;
+							scy = 1 - y / output_size * 2;
+							float theta = scx * m_pi;
+							float phi = scy * m_pi / 2.f;
+							vx = cos(phi) * cos(theta);
+							vy = sin(phi);
+							vz = cos(phi) * sin(theta);
+						//}
 					}
 
 					Cubemap::CubeFace cube_face;
