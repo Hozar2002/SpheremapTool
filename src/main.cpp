@@ -304,48 +304,33 @@ int main(int argc, char* argv[]) {
 		output_fname = fname_prefix + ".tga";
 
 	float output_pixel_size = 1.f / output_size;
-	int output_size_x = output_size * 2;
+	int output_size_x = output_size;
 	float output_pixel_size_x = 1.f / output_size_x;
 	std::vector<u32> out_data(output_size_x * output_size);
 
 	{
 		Cubemap input_cubemap(fname_prefix, fname_extension);
 		for (int y = 0; y < output_size; ++y) {
-			for (int x = 0; x < output_size_x; ++x) {
-				float center_s = unlerp(x, output_size_x);
+			for (int x = 0; x < output_size; ++x) {
+				float center_s = unlerp(x, output_size);
 				float center_t = unlerp(y, output_size);
 
 				u32 sample_r = 0, sample_g = 0, sample_b = 0;
 
 				for (int sample = 0; sample < num_aa_samples; ++sample) {
-					float s = center_s + aa_sample_pattern[sample*2 + 0] * output_pixel_size_x;
+					float s = center_s + aa_sample_pattern[sample*2 + 0] * output_pixel_size;
 					float t = center_t + aa_sample_pattern[sample*2 + 1] * output_pixel_size;
 
 					float vx, vy, vz;
-					if (dome) {
-						float sc = 2.f*s - 1.f;
-						float tc = -(2.f*t - 1.f);
 
-						float vs = std::sqrtf(sc*sc + tc*tc);
-						vx = sc;
-						vy = tc;
-						if (vs > 1.f) {
-							vx = vx/vs;
-							vy = vy/vs;
-						}
-
-						vz = std::sqrtf(std::max(0.f, 1.f - vx*vx - vy*vy));
-					} else {
-							float m_pi = acos(-1.f);
-							float scx = (float)x / (float)output_size - 1;
-							float scy = 1 - (float)y / (float)output_size;
-							float theta = scx * m_pi;
-							float phi = scy * m_pi / 2.f;
-							vx = cos(phi) * cos(theta);
-							vy = sin(phi);
-							vz = cos(phi) * sin(theta);
-						//}
-					}
+					float m_pi = acos(-1.f);
+					float scx = (float)x / (float)output_size - 1;
+					float scy = 1 - (float)y / (float)output_size;
+					float theta = scx * m_pi;
+					float phi = scy * m_pi / 2.f;
+					vx = cos(phi) * cos(theta);
+					vy = sin(phi);
+					vz = cos(phi) * sin(theta);
 
 					Cubemap::CubeFace cube_face;
 					float tex_s, tex_t;
