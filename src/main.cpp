@@ -337,7 +337,7 @@ int main(int argc, char* argv[]) {
 						vz = std::sqrtf(std::max(0.f, 1.f - vx*vx - vy*vy));
 					} else {
 							float m_pi = acos(-1.f);
-							float scx = (float)x / (float)output_size_x * 2 - 1;
+							float scx = (float)x / (float)output_size * 2 - 1;
 							float scy = 1 - (float)y / (float)output_size * 2;
 							float theta = scx * m_pi;
 							float phi = scy * m_pi / 2.f;
